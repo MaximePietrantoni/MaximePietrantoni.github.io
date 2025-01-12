@@ -1,0 +1,190 @@
+{% macro citeCount(count) %}
+{% if count %}
+<span class="publication-citecount">
+  cited by: {{count}}
+</span>
+{% endif %}
+{% endmacro %}
+{% macro image(src, alt='', lazy=false, class='') %}
+{% set ext = '.' + src.split('.')[-1] %}
+{% set base_src = src[:-(ext|length)] %}
+<picture>
+  <!-- Add debug comment to verify paths -->
+  <!-- webp: {{ base_src }}.webp -->
+  <!-- original: {{ src }} -->
+  <source srcset="{{ base_src }}.webp, {{ base_src }}@2x.webp 2x" type="image/webp" />
+  <source srcset="{{ src }}, {{ base_src }}@2x{{ ext }} 2x" type="image/{{ ext[1:] }}" />
+{% if lazy %}
+  <img alt="{{alt}}" src="{{ src }}" loading="lazy" class="lazy-img {{class}}"/>
+{% else %}
+  <img alt="{{alt}}" src="{{ src }}" class="{{class}}"/>
+{% endif %}
+</picture>
+{% endmacro %}
+<!DOCTYPE html>
+<html lang="en" moznomarginboxes mozdisallowselectionprint>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Maxime Pietrantoni">
+    <meta name="keywords" content="researcher, deep learning, phd, cv, portfolio, personal resume">
+    <meta name="author" content="Maxime Pietrantoni">
+    <meta http-equiv="content-language" content="en-GB">
+    <link rel="alternate" href="./" hreflang="x-default" />
+    <title>Maxime Pietrantoni</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="images/profile.webp">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="print.css" media="print" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <div class="profile-name-container">
+        <div class="profile-picture">
+          <picture>
+            <source srcset="images/profile.webp, images/profile@2x.webp 2x" type="image/webp" />
+            <source srcset="images/profile.jpg, images/profile@2x.jpg 2x" type="image/jpeg" />
+            <img alt="Profile picture" src="images/profile.jpg" />
+          </picture>
+        </div>
+        <div class="header-main">
+          <h1><span class="first">Maxime</span> Pietrantoni</h1>
+          <div class="print sub-header-main">
+            <a href="mailto:maxime.pietrantoni@cvut.cz">maxime.pietrantoni@cvut.cz</a>
+          </div>
+          <div class="subheader noprint">PhD student</div>
+          <ul class="links noprint">
+            <li><a href="mailto:maxime.pietrantoni@cvut.cz">Email</a></li>
+            <li><a href="https://www.linkedin.com/in/pietrantoni-maxime-b33b89113">LinkedIn</a></li>
+            <li><a href="https://scholar.google.com/citations?user=Z2CT208AAAAJ">Google Scholar</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bio noprint">
+        I am a PhD student in the Computer Science doctoral study program at the Department of Cybernetics, Faculty of Electrical Engineering (FEE) at
+        Czech Technical University (CTU) and affiliated to Naver Labs Europe. My PhD topic is <i>Representation Learning for Robust and Privacy Preserving Visual Localization</i> under the co-supervision of <i><a href="https://tsattler.github.io/">Torsten Sattler</a></i>,
+        <i><a href="https://europe.naverlabs.com/people_user_naverlabs/gabriela-csurka/">Gabriela Csurka</a></i> and <i><a href="https://europe.naverlabs.com/people_user_naverlabs/martin-humenberger/">Martin Humenberger</a></i>.
+        My main research interests are in visual localization, representation learning, scene understanding and 3D reconstruction.
+
+        I received my engineering degree from CentraleSupélec (France) majoring in applied mathematics. 
+        In parallel I obtained the MVA (Mathematics, Vision and Learning) master degree from Ecole Normale Supérieure Paris-Saclay (France) in applied mathematics, deep learning and computer vision.
+        Before my doctoral studies, I interned at Naver Labs Europe, working on sim-to-real transfer for localization and navigation tasks.
+
+      </div>
+    </header>
+    <div class="main">
+
+      </section>
+      <section id="publications" class="c2">
+        <h2>Publications</h2>
+          <div class="section-item image-item-container">
+            <div class="responsive-image-container">
+              <div class="responsive-image">
+                {{image("images/pd-sslnif.png", lazy=true)}}
+              </div>
+            </div>
+            <div class="text">
+              <span class="title"> Self-Supervised Learning of Neural Implicit Feature Fields for Camera Pose Refinement</span>
+              <span class="publication-authors"><strong>Maxime Pietrantoni</strong>, Gabriela Csurka, Martin Humenberger, Torsten Sattler</span>
+              <span class="publication-venue"><i>3DV 2024 (spotlight)</i></span>
+              <ul class="links">
+                <li><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10550578" rel="nofollow">paper</a></li>
+                <li><a 
+                    href="assets/sslnif2024.bib" 
+                    data-bib="{{ 'assets/sslnif2024.bib' | load_bib | safe }}" 
+                    download="sslnif2024.bib"
+                    rel="nofollow">bib</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-item image-item-container">
+            <div class="responsive-image-container">
+              <div class="responsive-image">
+                {{image("images/pd-segloc.png", lazy=true)}}
+              </div>
+            </div>
+            <div class="text">
+              <span class="title"> Segloc: Learning segmentation-based representations for privacy-preserving visual localization </span>
+              <span class="publication-authors"><strong>Maxime Pietrantoni</strong>, Gabriela Csurka, Martin Humenberger, Torsten Sattler</span>
+              <span class="publication-venue"><i>CVPR 2023</i></span>
+              <ul class="links">
+                <li><a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Pietrantoni_SegLoc_Learning_Segmentation-Based_Representations_for_Privacy-Preserving_Visual_Localization_CVPR_2023_paper.pdf" rel="nofollow">paper</a></li>
+                <li><a 
+                    href="assets/segloc2023.bib" 
+                    data-bib="{{ 'assets/segloc2023.bib' | load_bib | safe }}" 
+                    download="segloc2023.bib"
+                    rel="nofollow">bib</a></li>
+              </ul>
+            </div>
+          </div>
+
+      </section>
+      <section id="education" class="c1">
+        <h2>Education</h2>
+        <div class="section-item">
+          <div class="title">
+            <span class="first-part">Ecole Normale Supérieure Paris-Saclay</span>
+            <span class="date-range">2019-2020</span>
+          </div>
+          <span class="subtitle"> Master Mathématiques Vision et Apprentissage (MVA)</span>
+        </div>
+        <div class="section-item">
+          <div class="title">
+            <span class="first-part">CentraleSupélec</span>
+            <span class="date-range">2016-2020</span>
+          </div>
+          <span class="subtitle"> Engineering Degree, Option Mathématiques Appliquées (OMA)</span>
+        </div>
+        <div class="section-item">
+          <div class="title">
+            <span class="first-part">Hong-Kong University of Science and Technology</span>
+            <span class="date-range">2018</span>
+          </div>
+          <span class="subtitle"> Exchange Semester, Machine Learning, Statistics and Optimization</span>
+        </div>
+
+      </section>
+      <section id="experience" class="">
+        <h2>
+          <span class="noprint">Work experience</span><span class="print">Selected experience</span>
+          <a href="javascript: void" onclick="this.parentElement.parentElement.classList.toggle('expanded')" class="see-more-btn"></a>
+        </h2>
+        <div class="c2-container">
+          <div class="section-item">
+            <div class="title">
+              <span class="first-part">Czech Institute of Informatics, Robotics and Cybernetics, CTU</span>
+              <span class="date-range">Sep 2021 &mdash; Present</span>
+            </div>
+            <span class="subtitle">PhD candidate</span>
+            <ul class="simple-list if-not-collapsed">
+              <li>Representation Learning for Robust and Privacy Preserving Visual Localization.</li>
+            </ul>
+            <div class="if-collapsed">
+              Supervisors <strong>Torsten Sattler</strong>, <strong>Martin Humenberger</strong> and <strong>Gabriela Csurka</strong>, Representation Learning for Robust and Privacy Preserving Visual Localization.
+            </div>
+          </div>
+
+          <div class="section-item">
+            <div class="title">
+              <span class="first-part">Naver Labs Europe</span>
+              <span class="date-range">May 2020 &mdash; November 2020</span>
+            </div>
+            <span class="subtitle">Research Intern</span>
+            <ul class="simple-list if-not-collapsed">
+              <li>Learning Synthetic to Real Transfer for Localization and Navigational Tasks.</li>
+            </ul>
+            <div class="if-collapsed">Supervisors <strong>Boris Chidlovskii</strong> and <strong>Tomi Silander</strong>, Learning Synthetic to Real Transfer for Localization and Navigational Tasks.</div>
+          </div>
+        </section>
+    <div class="message-center-container">
+      <div class="message-center" id="messageCenter">
+      </div>
+    </div>
+    <script async src="/scripts.js"></script>
+  </body>
+</html>
