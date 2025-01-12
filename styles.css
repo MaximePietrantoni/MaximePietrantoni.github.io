@@ -16,7 +16,7 @@ a {
 }
 
 body {
-  max-width: 120ch;
+  max-width: 100ch;
   margin: 0px auto;
   padding-bottom: 6em;
 }
@@ -42,7 +42,7 @@ header .rg-subtitle {
 }
 
 .profile-picture {
-  width: 25.451%;
+  width: 20.451%;
   position: relative;
   float: left;
   margin: 0px 2em 0px 0px;
