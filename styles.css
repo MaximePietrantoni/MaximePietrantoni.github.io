@@ -398,7 +398,7 @@ section {
 }
 
 .section-item .responsive-image {
-  width: 200%;
+  width: 100%;
   background-size: cover;
   padding: 100% 0 0 0;
   position: relative;
@@ -406,7 +406,7 @@ section {
 
 .section-item .responsive-image img {
   position: absolute;
-  width: 200%;
+  width: 100%;
   height: 100%;
   top: 0;
   left: 0;
